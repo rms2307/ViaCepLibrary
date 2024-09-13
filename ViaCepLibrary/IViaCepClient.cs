@@ -7,7 +7,6 @@
         /// </summary>
         Task<AddressResult> GetAddressAsync(ZipCodeRequest request);
 
-
         /// <summary>
         /// Searches the specified address by state initials (UF), city and street name.
         /// </summary>
