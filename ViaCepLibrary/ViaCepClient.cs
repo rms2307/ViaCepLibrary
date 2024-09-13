@@ -10,9 +10,9 @@ namespace ViaCepLibrary
 
         private readonly HttpClient _httpClient;
 
-        public ViaCepClient(HttpClient httpClient)
+        public ViaCepClient()
         {
-            _httpClient = httpClient;
+            _httpClient = new();
             _httpClient.BaseAddress = new Uri(BASE_URL);
         }
 
