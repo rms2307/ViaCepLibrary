@@ -1,17 +1,18 @@
-﻿using System.Runtime.ConstrainedExecution;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace ViaCepLibrary.Dtos
 {
-    public class ZipCode
+    public class ZipCodeRequest
     {
-        public ZipCode(string zipCodeNumber)
+        public ZipCodeRequest(string zipCodeNumber)
         {
             zipCodeNumber = ClearZipCodeNumber(zipCodeNumber);
             Validate(zipCodeNumber);
 
             ZipCodeNumber = zipCodeNumber;
         }
+
+        public string ZipCodeNumber { get; private set; }
 
         private string ClearZipCodeNumber(string zipCodeNumber)
         {
@@ -27,7 +28,5 @@ namespace ViaCepLibrary.Dtos
             if (!regex.IsMatch(zipCodeNumber))
                 throw new ArgumentException("The zip code number is invalid. Only eight numbers are allowed.");
         }
-
-        public string ZipCodeNumber { get; private set; }
     }
 }

@@ -2,6 +2,7 @@
 {
     public interface IViaCepClient
     {
-        Task<AddressResult> GetAddressAsync(ZipCode cep);
+        Task<AddressResult> GetAddressAsync(ZipCodeRequest cep);
+        Task<List<AddressResult>> GetZipCodeAsync(AddressRequest request);
     }
 }
