@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViaCepLibrary", "ViaCepLibrary\ViaCepLibrary.csproj", "{265CC933-450D-45F2-8888-07358B71B513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labs", "Labs\Labs.csproj", "{ACBA084B-B6F2-451B-BBBD-E101902739A0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{265CC933-450D-45F2-8888-07358B71B513}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{265CC933-450D-45F2-8888-07358B71B513}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{265CC933-450D-45F2-8888-07358B71B513}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACBA084B-B6F2-451B-BBBD-E101902739A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACBA084B-B6F2-451B-BBBD-E101902739A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACBA084B-B6F2-451B-BBBD-E101902739A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACBA084B-B6F2-451B-BBBD-E101902739A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
