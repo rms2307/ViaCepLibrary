@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/rms2307/ViaCepLibrary</RepositoryUrl>
     <PackageTags>ViaCep</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>8.0.204.2</Version>
+    <Version>8.0.204.3</Version>
   </PropertyGroup>
 
 </Project>
