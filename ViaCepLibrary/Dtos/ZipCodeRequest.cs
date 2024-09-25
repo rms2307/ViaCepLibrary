@@ -14,15 +14,20 @@ namespace ViaCepLibrary.Dtos
 
         public string ZipCodeNumber { get; private set; }
 
-        private string ClearZipCodeNumber(string zipCodeNumber)
+        private string ClearZipCodeNumber(string? zipCodeNumber)
         {
+            if (string.IsNullOrWhiteSpace(zipCodeNumber))
+            {
+                return string.Empty;
+            }
+
             return Regex.Replace(zipCodeNumber, @"[^\d]", "");
         }
 
-        private void Validate(string zipCodeNumber)
+        private void Validate(string? zipCodeNumber)
         {
             if (string.IsNullOrWhiteSpace(zipCodeNumber))
-                throw new ArgumentNullException("Zip code number cannot be null or empty.");
+                throw new ArgumentNullException("ZipCodeNumber");
 
             Regex regex = new(@"^\d{8}$");
             if (!regex.IsMatch(zipCodeNumber))
