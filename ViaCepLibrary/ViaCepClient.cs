@@ -35,8 +35,11 @@ namespace ViaCepLibrary
                 throw new ZipCodeException(ex.Message, ex);
             }
 
-            if (address is null || address.Error)
+            if (address is null)
                 throw new ZipCodeNotFoundException("Zip code number not found.");
+
+            if (address.Error?.ToLower() == "true")
+                throw new ZipCodeException("Error fetching data from ViaCep.");
 
             return MapToAddressResult(address);
         }
@@ -60,8 +63,11 @@ namespace ViaCepLibrary
                 throw new ZipCodeException(ex.Message, ex);
             }
 
-            if (addresses is null || !addresses.Any())
+            if (addresses is null || addresses.Count == 0)
                 throw new ZipCodeNotFoundException("Address not found.");
+
+            if (addresses.Any(a => a.Error?.ToLower() == "true"))
+                throw new ZipCodeException("Error fetching data from ViaCep.");
 
             return addresses.Select(MapToAddressResult).ToList();
         }

@@ -53,12 +53,12 @@ namespace ViaCepLibrary.Tests.Client
         }
 
         [Fact]
-        public async Task GetAddress_InvalidZipCode_ShouldThrowZipCodeNotFoundException()
+        public async Task GetAddress_InvalidZipCode_ShouldThrowZipCodeException()
         {
             // Arrange
             var expectedAddress = new Address
             {
-                Error = true
+                Error = "true",
             };
             var zipCodeRequest = new ZipCodeRequest("01001-000");
 
@@ -73,7 +73,7 @@ namespace ViaCepLibrary.Tests.Client
             Func<Task> action = async () => await _viaCepClient.GetAddressAsync(zipCodeRequest);
 
             // Assert
-            await action.Should().ThrowAsync<ZipCodeNotFoundException>().WithMessage("Zip code number not found.");
+            await action.Should().ThrowAsync<ZipCodeException>().WithMessage("Error fetching data from ViaCep.");
         }
 
         [Fact]
@@ -81,9 +81,9 @@ namespace ViaCepLibrary.Tests.Client
         {
             // Arrange
             var addressList = new List<Address>
-        {
-            new() { ZipCode = "01001-000", Street = "Praça da Sé", City = "São Paulo", StateInitials = "SP" }
-        };
+            {
+                new() { ZipCode = "01001-000", Street = "Praça da Sé", City = "São Paulo", StateInitials = "SP" }
+            };
             var addressRequest = new AddressRequest("SP", "São Paulo", "Praça da Sé");
 
             var httpResponse = new HttpResponseMessage
@@ -120,6 +120,30 @@ namespace ViaCepLibrary.Tests.Client
 
             // Assert
             await action.Should().ThrowAsync<ZipCodeNotFoundException>().WithMessage("Address not found.");
+        }
+
+        [Fact]
+        public async Task GetZipCode_InvalidAddress_ShouldThrowZipCodeException()
+        {
+            // Arrange
+            var addressRequest = new AddressRequest("SP", "São Paulo", "Rua Inexistente");
+            var expectedAddress = new Address
+            {
+                Error = "true",
+            };
+
+            var httpResponse = new HttpResponseMessage
+            {
+                Content = JsonContent.Create(new List<Address> { expectedAddress }),
+                StatusCode = System.Net.HttpStatusCode.OK
+            };
+            _httpClientWrapperMock.GetAsync(Arg.Any<string>()).Returns(httpResponse);
+
+            // Act
+            Func<Task> action = async () => await _viaCepClient.GetZipCodeAsync(addressRequest);
+
+            // Assert
+            await action.Should().ThrowAsync<ZipCodeException>().WithMessage("Error fetching data from ViaCep.");
         }
     }
 }

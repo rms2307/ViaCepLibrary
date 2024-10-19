@@ -29,6 +29,6 @@ namespace ViaCepLibrary.Models
         public int IBGECode { get; set; }
 
         [JsonPropertyName("erro")]
-        public bool Error { get; set; }
+        public string? Error { get; set; }
     }
 }
